@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Stylus Mobile — Estilo que llega a ti</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Epilogue:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --ink:#0d0d0b;
+  --cream:#f5f0e8;
+  --gold:#c9a84c;
+  --gold-dim:rgba(201,168,76,0.18);
+  --warm:#faf8f4;
+  --muted:#7a7468;
+  --border:rgba(0,0,0,0.09);
+  --surface:#ffffff;
+  --success:#2d7a4f;
+  --radius:0px;
+}
+body{font-family:'Epilogue',sans-serif;font-weight:300;background:var(--warm);color:var(--ink);min-height:100vh;overflow-x:hidden}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--ink);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid rgba(201,168,76,0.12)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);letter-spacing:.06em;cursor:pointer}
+.nav-logo em{color:var(--gold);font-style:italic}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-lang{display:flex;gap:2px}
+.lang-btn{background:none;border:none;cursor:pointer;font-family:'Epilogue',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:4px 8px;transition:color .2s}
+.lang-btn.active{color:var(--gold);border-bottom:1px solid var(--gold)}
+.nav-cta{background:var(--gold);color:var(--ink);border:none;padding:8px 18px;font-family:'Epilogue',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.nav-cta:hover{background:#d4b45a}
+.nav-user-btn{background:none;border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:7px 16px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:'Epilogue',sans-serif;transition:all .2s}
+.nav-user-btn:hover{background:var(--gold);color:var(--ink)}
+.nav-member-badge{background:rgba(201,168,76,.15);color:var(--gold);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:80px 24px 60px}
+.hero-grain{position:absolute;inset:0;opacity:.4;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E")}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.07) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-eyebrow{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;animation:fadeUp .8s ease both}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,12vw,120px);font-weight:300;line-height:.88;color:var(--cream);letter-spacing:-.02em;animation:fadeUp .8s ease .1s both}
+.hero-title em{font-style:italic;color:var(--gold);display:block}
+.hero-sub{margin-top:24px;font-size:14px;letter-spacing:.08em;color:rgba(245,240,232,.45);animation:fadeUp .8s ease .2s both}
+.hero-ctas{margin-top:48px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s ease .3s both}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;font-family:'Epilogue',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:none;transition:all .25s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:#d4b45a;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--cream);border:1px solid rgba(201,168,76,.3)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.btn-dark{background:var(--ink);color:var(--cream)}
+.btn-dark:hover{background:#1e1a15}
+.btn-whatsapp{background:#25D366;color:#fff}
+.btn-whatsapp:hover{background:#1ebe5d;transform:translateY(-1px)}
+.hero-member-cta{margin-top:28px;animation:fadeUp .8s ease .4s both}
+.hero-member-cta p{font-size:12px;color:rgba(245,240,232,.35);margin-bottom:10px}
+.member-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,168,76,.25);padding:8px 18px;color:rgba(245,240,232,.5);font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.member-pill:hover{border-color:var(--gold);color:var(--gold)}
+.member-pill span{color:var(--gold)}
+
+/* ── MEMBER BANNER ── */
+.member-banner{background:linear-gradient(135deg,#1a1508 0%,#2a1f0a 100%);border-bottom:1px solid rgba(201,168,76,.2);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.member-banner-text{font-size:13px;color:var(--cream)}
+.member-banner-text strong{color:var(--gold)}
+.member-banner-discount{background:var(--gold);color:var(--ink);padding:4px 12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+
+/* ── SERVICES ── */
+.services-section{background:var(--ink);padding:96px 24px}
+.services-section .section-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;text-align:center}
+.services-section .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,58px);font-weight:300;color:var(--cream);text-align:center;margin-bottom:56px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1000px;margin:0 auto}
+@media(max-width:680px){.services-grid{grid-template-columns:1fr}}
+.service-card{background:#161412;padding:44px 32px;position:relative;overflow:hidden;transition:background .3s;cursor:default}
+.service-card:hover{background:#1c1814}
+.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .4s ease;transform-origin:left}
+.service-card:hover::after{transform:scaleX(1)}
+.service-num{font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:300;color:rgba(201,168,76,.06);position:absolute;top:12px;right:20px;line-height:1}
+.service-name{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--cream);margin-bottom:10px;line-height:1.2;position:relative}
+.service-desc{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:28px;position:relative}
+.service-duration{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(201,168,76,.5);margin-bottom:20px;position:relative}
+.price-row{display:flex;align-items:flex-end;gap:12px;position:relative}
+.price-original{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--gold);line-height:1}
+.price-original span{font-size:18px;color:rgba(201,168,76,.5)}
+.price-member{font-family:'Cormorant Garamond',serif;font-size:24px;color:#2d7a4f;line-height:1;display:none}
+.price-member span{font-size:13px}
+.price-member-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#2d7a4f;margin-left:4px;display:none}
+.service-book-btn{margin-top:24px;width:100%;padding:12px;background:transparent;border:1px solid rgba(201,168,76,.25);color:rgba(245,240,232,.6);font-family:'Epilogue',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px}
+.service-book-btn:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+/* ── MEMBERSHIP ── */
+.membership-section{padding:96px 24px;background:var(--warm)}
+.membership-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2px}
+@media(max-width:680px){.membership-inner{grid-template-columns:1fr}}
+.plan-card{padding:44px 36px;position:relative}
+.plan-card.free{background:var(--surface);border:1px solid var(--border)}
+.plan-card.member{background:var(--ink);border:2px solid var(--gold)}
+.plan-badge{font-size:9px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:20px;display:inline-block;padding:4px 10px}
+.plan-card.free .plan-badge{background:rgba(0,0,0,.06);color:var(--muted)}
+.plan-card.member .plan-badge{background:var(--gold);color:var(--ink)}
+.plan-name{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;margin-bottom:6px}
+.plan-card.free .plan-name{color:var(--ink)}
+.plan-card.member .plan-name{color:var(--cream)}
+.plan-price{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;line-height:1;margin-bottom:4px}
+.plan-card.free .plan-price{color:var(--ink)}
+.plan-card.member .plan-price{color:var(--gold)}
+.plan-price-sub{font-size:11px;color:var(--muted);margin-bottom:28px}
+.plan-features{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.plan-feature{font-size:13px;display:flex;align-items:center;gap:10px}
+.plan-card.free .plan-feature{color:#3a3530}
+.plan-card.member .plan-feature{color:rgba(245,240,232,.75)}
+.plan-feature-icon{width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.plan-card.free .plan-feature-icon{color:var(--muted)}
+.plan-card.member .plan-feature-icon{color:var(--gold)}
+
+/* ── GALLERY ── */
+.gallery-section{padding:96px 24px;background:#0d0d0b}
+.gallery-section .section-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.gallery-section .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,52px);font-weight:300;color:var(--cream);margin-bottom:44px}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:1100px;margin:0 auto}
+@media(max-width:768px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+.gallery-item{aspect-ratio:1;overflow:hidden;position:relative;cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,11,.8) 0%,transparent 55%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:14px}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-caption{font-size:12px;color:var(--cream);letter-spacing:.06em}
+.gallery-item.featured{grid-column:span 2;grid-row:span 2}
+
+/* ── HOW IT WORKS ── */
+.how-section{padding:96px 24px;background:var(--warm)}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:900px;margin:48px auto 0}
+@media(max-width:680px){.how-steps{grid-template-columns:1fr;gap:28px}}
+.how-step{text-align:center}
+.how-num{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:300;color:var(--gold-dim);line-height:1;margin-bottom:12px}
+.how-title{font-family:'Cormorant Garamond',serif;font-size:22px;margin-bottom:8px}
+.how-desc{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* ── CTA STRIP ── */
+.cta-strip{background:var(--gold);padding:72px 24px;text-align:center}
+.cta-strip-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,56px);font-weight:300;color:var(--ink);margin-bottom:28px}
+.cta-strip-sub{font-size:13px;color:rgba(13,13,11,.6);margin-bottom:36px;letter-spacing:.05em}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);padding:52px 24px;text-align:center;border-top:1px solid rgba(201,168,76,.1)}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--cream);margin-bottom:16px}
+.footer-logo em{color:var(--gold);font-style:italic}
+footer p{font-size:12px;color:rgba(245,240,232,.3);letter-spacing:.06em;line-height:2}
+footer a{color:var(--gold);text-decoration:none}
+
+/* ── MODALS ── */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal{background:var(--surface);width:100%;max-width:520px;padding:40px;max-height:90vh;overflow-y:auto;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);line-height:1}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:30px;margin-bottom:6px}
+.modal-sub{font-size:13px;color:var(--muted);margin-bottom:28px;line-height:1.6}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select,.field textarea{background:var(--warm);border:1px solid var(--border);padding:12px 14px;font-family:'Epilogue',sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;border-radius:0;-webkit-appearance:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+.field textarea{resize:vertical;min-height:80px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.step-indicator{display:flex;gap:0;margin-bottom:28px}
+.step-dot{flex:1;height:3px;background:#eee;transition:background .3s}
+.step-dot.active{background:var(--gold)}
+.booking-summary{background:var(--warm);padding:20px;margin-bottom:24px;font-size:13px}
+.summary-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)}
+.summary-row:last-child{border-bottom:none;font-weight:500;padding-top:10px}
+.summary-row.discount{color:var(--success)}
+.alert-success{background:rgba(45,122,79,.1);border:1px solid rgba(45,122,79,.2);color:var(--success);padding:14px 16px;font-size:13px;margin-bottom:16px}
+.alert-info{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:#8a6a1a;padding:14px 16px;font-size:13px;margin-bottom:16px;line-height:1.6}
+
+/* ── PROFILE ── */
+.profile-section{padding:96px 24px;max-width:700px;margin:0 auto}
+.profile-card{background:var(--surface);border:1px solid var(--border);padding:36px}
+.profile-header{display:flex;align-items:center;gap:20px;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.profile-avatar{width:64px;height:64px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--ink);flex-shrink:0}
+.profile-name{font-family:'Cormorant Garamond',serif;font-size:28px;margin-bottom:4px}
+.profile-email{font-size:13px;color:var(--muted)}
+.booking-item{border:1px solid var(--border);padding:18px 20px;margin-bottom:10px;display:flex;align-items:center;gap:16px}
+.booking-date{background:var(--ink);color:var(--cream);padding:8px 12px;text-align:center;min-width:54px;flex-shrink:0}
+.booking-date-day{font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1}
+.booking-date-month{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.booking-info{flex:1}
+.booking-service-name{font-size:14px;font-weight:400;margin-bottom:3px}
+.booking-meta{font-size:12px;color:var(--muted)}
+.badge{display:inline-block;padding:3px 9px;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.badge-confirmed{background:rgba(45,122,79,.1);color:var(--success)}
+.badge-pending{background:rgba(168,107,50,.12);color:#a86b32}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo" onclick="showSection('home')">Stylus<em>Mobile</em></div>
+  <div class="nav-right">
+    <div class="nav-lang">
+      <button class="lang-btn active" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <div id="navGuest">
+      <button class="nav-cta" onclick="openBook()" data-es="Reservar" data-en="Book now">Reservar</button>
+      <button class="nav-user-btn" onclick="openLogin()" data-es="Entrar" data-en="Sign in">Entrar</button>
+    </div>
+    <div id="navMember" style="display:none;align-items:center;gap:10px">
+      <span class="nav-member-badge">⭐ <span id="navMemberName"></span></span>
+      <button class="nav-user-btn" onclick="showSection('profile')" data-es="Mi perfil" data-en="My profile">Mi perfil</button>
+      <button class="nav-user-btn" onclick="logout()" data-es="Salir" data-en="Sign out">Salir</button>
+    </div>
+  </div>
+</nav>
+
+<!-- MEMBER BANNER -->
+<div id="memberBanner" class="member-banner" style="display:none;margin-top:62px">
+  <div class="member-banner-text">⭐ <strong data-es="Eres miembro Stylus" data-en="You're a Stylus member">Eres miembro Stylus</strong> — <span data-es="tu descuento del 10% se aplica automáticamente en cada reserva." data-en="your 10% discount is applied automatically on every booking.">tu descuento del 10% se aplica automáticamente en cada reserva.</span></div>
+  <div class="member-banner-discount" data-es="−10% ACTIVO" data-en="−10% ACTIVE">−10% ACTIVO</div>
+</div>
+
+<!-- ══ HOME ══ -->
+<div id="section-home">
+  <!-- Hero -->
+  <div class="hero" style="margin-top:62px" id="heroSection">
+    <div class="hero-grain"></div>
+    <div class="hero-glow"></div>
+    <p class="hero-eyebrow" data-es="Estilismo profesional a domicilio · Granollers" data-en="Professional mobile styling · Granollers">Estilismo profesional a domicilio · Granollers</p>
+    <h1 class="hero-title">Stylus<em>Mobile</em></h1>
+    <p class="hero-sub" data-es="Estilo que llega a ti" data-en="Style that comes to you">Estilo que llega a ti</p>
+    <div class="hero-ctas">
+      <button class="btn btn-gold" onclick="openBook()" data-es="Reservar ahora" data-en="Book now">Reservar ahora</button>
+      <button class="btn btn-outline" onclick="document.getElementById('servicesAnchor').scrollIntoView({behavior:'smooth'})" data-es="Ver servicios" data-en="Our services">Ver servicios</button>
+    </div>
+    <div class="hero-member-cta" id="guestMemberCta">
+      <p data-es="¿Ya eres miembro?" data-en="Already a member?">¿Ya eres miembro?</p>
+      <div class="member-pill" onclick="openLogin()">
+        <span>⭐</span>
+        <span data-es="Accede para tu −10% + prioridad" data-en="Sign in for your −10% + priority">Accede para tu −10% + prioridad</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="how-section">
+    <div style="max-width:900px;margin:0 auto">
+      <p class="section-label reveal" style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px" data-es="Así funciona" data-en="How it works">Así funciona</p>
+      <h2 class="section-title reveal" style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,52px);font-weight:300;margin-bottom:0" data-es="Simple y rápido" data-en="Simple and fast">Simple y rápido</h2>
+      <div class="how-steps">
+        <div class="how-step reveal">
+          <div class="how-num">01</div>
+          <div class="how-title" data-es="Elige tu servicio" data-en="Choose your service">Elige tu servicio</div>
+          <div class="how-desc" data-es="Selecciona corte, barba o el combo completo. Sin sorpresas — precio fijo siempre." data-en="Choose haircut, beard or the full combo. No surprises — fixed price always.">Selecciona corte, barba o el combo completo. Sin sorpresas — precio fijo siempre.</div>
+        </div>
+        <div class="how-step reveal">
+          <div class="how-num">02</div>
+          <div class="how-title" data-es="Reserva por WhatsApp" data-en="Book via WhatsApp">Reserva por WhatsApp</div>
+          <div class="how-desc" data-es="Te preparamos el mensaje con todos los datos. Solo confirmás y listo." data-en="We prepare the message with all your details. Just confirm and you're done.">Te preparamos el mensaje con todos los datos. Solo confirmás y listo.</div>
+        </div>
+        <div class="how-step reveal">
+          <div class="how-num">03</div>
+          <div class="how-title" data-es="Llegamos a ti" data-en="We come to you">Llegamos a ti</div>
+          <div class="how-desc" data-es="Tu estilista llega a tu puerta a la hora acordada. Tú solo disfruta." data-en="Your stylist arrives at your door at the agreed time. Just enjoy.">Tu estilista llega a tu puerta a la hora acordada. Tú solo disfruta.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <div class="services-section" id="servicesAnchor">
+    <p class="section-label reveal" data-es="Lo que ofrecemos" data-en="What we offer">Lo que ofrecemos</p>
+    <h2 class="section-title reveal" data-es="Servicios a domicilio" data-en="Services at your door">Servicios a domicilio</h2>
+    <div class="services-grid" id="servicesGrid">
+      <!-- injected by JS -->
+    </div>
+  </div>
+
+  <!-- Membership -->
+  <div class="membership-section">
+    <div style="max-width:900px;margin:0 auto">
+      <p class="section-label reveal" style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px" data-es="Únete gratis" data-en="Join for free">Únete gratis</p>
+      <h2 class="section-title reveal" style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,52px);font-weight:300;margin-bottom:44px" data-es="Más ventajas,<br>siendo miembro" data-en="More benefits,<br>as a member">Más ventajas,<br>siendo miembro</h2>
+      <div class="membership-inner">
+        <div class="plan-card free reveal">
+          <div class="plan-badge" data-es="Sin registro" data-en="Without account">Sin registro</div>
+          <div class="plan-name" data-es="Visita" data-en="Guest">Visita</div>
+          <div class="plan-price">0<span style="font-size:22px">€</span></div>
+          <div class="plan-price-sub" data-es="Sin compromiso" data-en="No commitment">Sin compromiso</div>
+          <div class="plan-features">
+            <div class="plan-feature"><div class="plan-feature-icon">✓</div><span data-es="Ver servicios y precios" data-en="View services and prices">Ver servicios y precios</span></div>
+            <div class="plan-feature"><div class="plan-feature-icon">✓</div><span data-es="Reservar por WhatsApp" data-en="Book via WhatsApp">Reservar por WhatsApp</span></div>
+            <div class="plan-feature"><div class="plan-feature-icon">✓</div><span data-es="Ver galería de trabajos" data-en="View gallery">Ver galería de trabajos</span></div>
+            <div class="plan-feature"><div class="plan-feature-icon" style="color:#ddd">–</div><span style="color:#aaa" data-es="Descuento del 10%" data-en="10% discount">Descuento del 10%</span></div>
+            <div class="plan-feature"><div class="plan-feature-icon" style="color:#ddd">–</div><span style="color:#aaa" data-es="Citas con prioridad" data-en="Priority appointments">Citas con prioridad</span></div>
+            <div class="plan-feature"><div class="plan-feature-icon" style="color:#ddd">–</div><span style="color:#aaa" data-es="Historial de reservas" data-en="Booking history">Historial de reservas</span></div>
+          </div>
+          <button class="btn btn-dark" style="width:100%;justify-content:center" onclick="openBook()" data-es="Reservar sin cuenta" data-en="Book without account">Reservar sin cuenta</button>
+        </div>
+        <div class="plan-card member reveal">
+          <div class="plan-badge" data-es="Recomendado" data-en="Recommended">Recomendado</div>
+          <div class="plan-name" data-es="Miembro" data-en="Member">Miembro</div>
+          <div class="plan-price" style="font-size:38px" data-es="Gratis" data-en="Free">Gratis</div>
+          <div class="plan-price-sub" style="color:rgba(245,240,232,.4)" data-es="Para siempre" data-en="Forever">Para siempre</div>
+          <div class="plan-features">
+            <div class="plan-feature"><div class="plan-feature-icon">✓</div><span data-es="Todo lo anterior" data-en="Everything above">Todo lo anterior</span></div>
+            <div class="plan-feature"><div class="plan-feature-icon">⭐</div><span data-es="10% de descuento en cada servicio" data-en="10% off every service">10% de descuento en cada servicio</span></div>
+            <div class="plan-feature"><div class="plan-feature-icon">⭐</div><span data-es="Citas con prioridad garantizada" data-en="Guaranteed priority appointments">Citas con prioridad garantizada</span></div>
+            <div class="plan-feature"><div class="plan-feature-icon">⭐</div><span data-es="Historial completo de reservas" data-en="Full booking history">Historial completo de reservas</span></div>
+          </div>
+          <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="openRegister()" data-es="Crear cuenta gratis" data-en="Create free account">Crear cuenta gratis</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery-section">
+    <div style="max-width:1100px;margin:0 auto">
+      <p class="section-label reveal" data-es="Nuestro trabajo" data-en="Our work">Nuestro trabajo</p>
+      <h2 class="section-title reveal" data-es="Galería" data-en="Gallery">Galería</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item featured reveal">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Fade clásico"/>
+          <div class="gallery-overlay"><span class="gallery-caption">Fade clásico</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&q=80" alt="Barba perfilada"/>
+          <div class="gallery-overlay"><span class="gallery-caption">Barba perfilada</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&q=80" alt="Estilo moderno"/>
+          <div class="gallery-overlay"><span class="gallery-caption">Estilo moderno</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=400&q=80" alt="Combo completo"/>
+          <div class="gallery-overlay"><span class="gallery-caption">Combo completo</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&q=80" alt="Corte clásico"/>
+          <div class="gallery-overlay"><span class="gallery-caption">Corte clásico</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Strip -->
+  <div class="cta-strip reveal">
+    <h2 class="cta-strip-title" data-es="¿Listo para reservar?" data-en="Ready to book?">¿Listo para reservar?</h2>
+    <p class="cta-strip-sub" data-es="Confirmación en menos de 2 horas · Servicio en Granollers y alrededores" data-en="Confirmation in less than 2 hours · Service in Granollers and surroundings">Confirmación en menos de 2 horas · Servicio en Granollers y alrededores</p>
+    <button class="btn btn-dark" style="font-size:13px;padding:16px 48px" onclick="openBook()" data-es="Reservar ahora" data-en="Book now">Reservar ahora</button>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Stylus<em>Mobile</em></div>
+    <p data-es="Estilismo profesional a domicilio · Granollers, Barcelona" data-en="Professional mobile styling · Granollers, Barcelona">Estilismo profesional a domicilio · Granollers, Barcelona</p>
+    <p><a href="https://wa.me/34655397694">💬 WhatsApp</a> · <span data-es="© 2025 Stylus Mobile" data-en="© 2025 Stylus Mobile">© 2025 Stylus Mobile</span></p>
+  </footer>
+</div>
+
+<!-- ══ PROFILE SECTION ══ -->
+<div id="section-profile" style="display:none;padding-top:62px">
+  <div class="profile-section">
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar" id="profileAvatar">J</div>
+        <div>
+          <div class="profile-name" id="profileName">Juan García</div>
+          <div class="profile-email" id="profileEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9ffcf3f6faf1ebfadfebfaecebb1fcf0f2">[email&#160;protected]</a></div>
+          <div style="margin-top:8px"><span class="badge badge-confirmed">⭐ Miembro · −10%</span></div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px" data-es="Mis reservas" data-en="My bookings">Mis reservas</div>
+        <button class="btn btn-gold" style="padding:10px 20px;font-size:11px" onclick="openBook()" data-es="+ Nueva" data-en="+ New">+ Nueva</button>
+      </div>
+      <div id="profileBookings">
+        <div class="booking-item">
+          <div class="booking-date"><div class="booking-date-day">15</div><div class="booking-date-month">Jul</div></div>
+          <div class="booking-info">
+            <div class="booking-service-name">Combo Corte + Barba</div>
+            <div class="booking-meta">11:00 · Carlos · 36€ <span style="color:#2d7a4f;font-size:11px">(−10% miembro)</span></div>
+          </div>
+          <span class="badge badge-pending" data-es="Pendiente" data-en="Pending">Pendiente</span>
+        </div>
+        <div class="booking-item">
+          <div class="booking-date"><div class="booking-date-day">10</div><div class="booking-date-month">Jul</div></div>
+          <div class="booking-info">
+            <div class="booking-service-name">Corte de pelo</div>
+            <div class="booking-meta">10:00 · María · 27€ <span style="color:#2d7a4f;font-size:11px">(−10% miembro)</span></div>
+          </div>
+          <span class="badge badge-confirmed" data-es="Confirmada" data-en="Confirmed">Confirmada</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:20px">
+      <button class="btn btn-outline" onclick="showSection('home')" data-es="← Volver al inicio" data-en="← Back to home">← Volver al inicio</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BOOKING MODAL ══ -->
+<div id="bookingModal" class="modal-backdrop" style="display:none">
+  <div class="modal">
+    <button class="modal-close" onclick="closeBook()">✕</button>
+    <div class="modal-title" data-es="Reservar cita" data-en="Book appointment">Reservar cita</div>
+    <div class="modal-sub" id="bookingModalSub" data-es="En 3 pasos, sin esperas." data-en="In 3 steps, no waiting.">En 3 pasos, sin esperas.</div>
+    <div class="step-indicator" id="stepIndicator">
+      <div class="step-dot active"></div><div style="width:4px"></div>
+      <div class="step-dot"></div><div style="width:4px"></div>
+      <div class="step-dot"></div>
+    </div>
+    <div id="bookStep1">
+      <div id="bookServiceGrid" style="display:flex;flex-direction:column;gap:10px"></div>
+      <div style="display:flex;justify-content:flex-end;margin-top:20px">
+        <button class="btn btn-gold" onclick="nextStep(2)" id="step1Next" style="opacity:.4" disabled data-es="Continuar →" data-en="Continue →">Continuar →</button>
+      </div>
+    </div>
+    <div id="bookStep2" style="display:none">
+      <div class="form-row">
+        <div class="field"><label data-es="Nombre" data-en="Name">Nombre</label><input id="bName" type="text"/></div>
+        <div class="field"><label>WhatsApp</label><input id="bPhone" type="tel" placeholder="+34 600 000 000"/></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label data-es="Fecha" data-en="Date">Fecha</label><input id="bDate" type="date"/></div>
+        <div class="field"><label data-es="Hora" data-en="Time">Hora</label><input id="bTime" type="time"/></div>
+      </div>
+      <div class="field"><label data-es="Dirección completa" data-en="Full address">Dirección completa</label><input id="bAddress" type="text" placeholder="Calle, número, piso, ciudad"/></div>
+      <div class="field"><label data-es="Notas (opcional)" data-en="Notes (optional)">Notas</label><textarea id="bNotes" placeholder="Cualquier detalle especial..."></textarea></div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px">
+        <button class="btn btn-outline" onclick="nextStep(1)" data-es="← Atrás" data-en="← Back">← Atrás</button>
+        <button class="btn btn-gold" onclick="nextStep(3)" data-es="Continuar →" data-en="Continue →">Continuar →</button>
+      </div>
+    </div>
+    <div id="bookStep3" style="display:none">
+      <div class="booking-summary" id="bookSummary"></div>
+      <div id="memberDiscountInfo" style="display:none" class="alert-info">⭐ <strong data-es="Descuento de miembro aplicado" data-en="Member discount applied">Descuento de miembro aplicado</strong><br><span data-es="Como miembro Stylus, tu precio incluye el −10% automáticamente." data-en="As a Stylus member, your price includes −10% automatically.">Como miembro Stylus, tu precio incluye el −10% automáticamente.</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+        <button class="btn btn-outline" onclick="nextStep(2)" data-es="← Atrás" data-en="← Back">← Atrás</button>
+        <button class="btn btn-whatsapp" onclick="confirmBooking()" style="font-size:13px;padding:14px 28px" data-es="💬 Confirmar por WhatsApp" data-en="💬 Confirm via WhatsApp">💬 Confirmar por WhatsApp</button>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:14px;text-align:center" data-es="Abriremos WhatsApp con tu reserva lista. Confirmación en menos de 2 horas." data-en="We'll open WhatsApp with your booking ready. Confirmation in less than 2 hours.">Abriremos WhatsApp con tu reserva lista. Confirmación en menos de 2 horas.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ LOGIN MODAL ══ -->
+<div id="loginModal" class="modal-backdrop" style="display:none">
+  <div class="modal" style="max-width:420px;background:#161412;border:1px solid rgba(201,168,76,.15)">
+    <button class="modal-close" onclick="closeLogin()" style="color:#7a7468">✕</button>
+    <div class="modal-title" style="color:var(--cream)" data-es="Bienvenido de vuelta" data-en="Welcome back">Bienvenido de vuelta</div>
+    <div class="modal-sub" style="color:rgba(245,240,232,.4)" data-es="Accede a tu descuento del 10% y tus citas." data-en="Access your 10% discount and appointments.">Accede a tu descuento del 10% y tus citas.</div>
+    <div id="loginAlert" style="display:none" class="alert-info"></div>
+    <div class="field"><label style="color:#7a7468">Email</label><input id="loginEmail" type="email" style="background:#0d0d0b;border-color:rgba(201,168,76,.15);color:#f5f0e8"/></div>
+    <div class="field" style="margin-bottom:24px"><label style="color:#7a7468" data-es="Contraseña" data-en="Password">Contraseña</label><input id="loginPassword" type="password" style="background:#0d0d0b;border-color:rgba(201,168,76,.15);color:#f5f0e8" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <button class="btn btn-gold" style="width:100%;justify-content:center;margin-bottom:12px" onclick="doLogin()" data-es="Entrar" data-en="Sign in">Entrar</button>
+    <button class="btn btn-outline" style="width:100%;justify-content:center;color:rgba(245,240,232,.4);border-color:rgba(255,255,255,.1)" onclick="switchToRegister()" data-es="¿No tienes cuenta? Crear una gratis →" data-en="No account? Create one free →">¿No tienes cuenta? Crear una gratis →</button>
+    <div style="margin-top:16px;font-size:11px;color:#555;text-align:center">Demo: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a3c0cfcac6cdd7c6e3d7c6d0d78dc0ccce">[email&#160;protected]</a> / 1234</div>
+  </div>
+</div>
+
+<!-- ══ REGISTER MODAL ══ -->
+<div id="registerModal" class="modal-backdrop" style="display:none">
+  <div class="modal" style="max-width:440px;background:#161412;border:1px solid rgba(201,168,76,.15)">
+    <button class="modal-close" onclick="closeRegister()" style="color:#7a7468">✕</button>
+    <div class="modal-title" style="color:var(--cream)" data-es="Únete gratis" data-en="Join for free">Únete gratis</div>
+    <div class="modal-sub" style="color:rgba(245,240,232,.4)" data-es="Crea tu cuenta y activa tu −10% permanente." data-en="Create your account and activate your permanent −10%.">Crea tu cuenta y activa tu −10% permanente.</div>
+    <div class="alert-info" style="margin-bottom:20px">⭐ <strong data-es="Beneficios de miembro" data-en="Member benefits">Beneficios de miembro</strong><br><span data-es="−10% en todos los servicios · Citas con prioridad · Historial de reservas" data-en="−10% on all services · Priority appointments · Booking history">−10% en todos los servicios · Citas con prioridad · Historial de reservas</span></div>
+    <div class="form-row">
+      <div class="field"><label style="color:#7a7468" data-es="Nombre" data-en="Name">Nombre</label><input id="regName" type="text" style="background:#0d0d0b;border-color:rgba(201,168,76,.15);color:#f5f0e8"/></div>
+      <div class="field"><label style="color:#7a7468">WhatsApp</label><input id="regPhone" type="tel" style="background:#0d0d0b;border-color:rgba(201,168,76,.15);color:#f5f0e8"/></div>
+    </div>
+    <div class="field"><label style="color:#7a7468">Email</label><input id="regEmail" type="email" style="background:#0d0d0b;border-color:rgba(201,168,76,.15);color:#f5f0e8"/></div>
+    <div class="field" style="margin-bottom:24px"><label style="color:#7a7468" data-es="Contraseña" data-en="Password">Contraseña</label><input id="regPassword" type="password" style="background:#0d0d0b;border-color:rgba(201,168,76,.15);color:#f5f0e8"/></div>
+    <button class="btn btn-gold" style="width:100%;justify-content:center;margin-bottom:12px" onclick="doRegister()" data-es="Crear cuenta gratis" data-en="Create free account">Crear cuenta gratis</button>
+    <button class="btn btn-outline" style="width:100%;justify-content:center;color:rgba(245,240,232,.4);border-color:rgba(255,255,255,.1)" onclick="switchToLogin()" data-es="¿Ya tienes cuenta? Entrar →" data-en="Already have an account? Sign in →">¿Ya tienes cuenta? Entrar →</button>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── DATA ──────────────────────────────────────────────────────────
+const SERVICES = [
+  {id:"corte", name:"Corte de pelo", nameEn:"Haircut", price:30, duration:"45 min", desc:"Corte profesional adaptado a tu estilo, en la comodidad de tu hogar.", descEn:"Professional haircut tailored to your style, in the comfort of your home."},
+  {id:"barba", name:"Arreglo de barba", nameEn:"Beard trim", price:15, duration:"30 min", desc:"Perfilado, rasurado y definición con productos de calidad profesional.", descEn:"Trimming, shaving and definition with professional quality products."},
+  {id:"combo", name:"Combo Corte + Barba", nameEn:"Cut + Beard Combo", price:40, duration:"70 min", desc:"El pack completo. Corte y arreglo de barba en una sola visita.", descEn:"The complete pack. Haircut and beard grooming in a single visit."},
+];
+
+const MOCK_USERS = [
+  {id:"1", name:"Juan García", email:"cliente@test.com", password:"1234", phone:"+34 612 345 678"},
+];
+
+let currentUser = null;
+let selectedService = null;
+let currentLang = "es";
+let currentStep = 1;
+
+// ── LANG ──────────────────────────────────────────────────────────
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  document.querySelectorAll('[data-es]').forEach(el => {
+    const txt = el.getAttribute('data-' + lang);
+    if (txt) el.innerHTML = txt;
+  });
+  renderServices();
+}
+
+// ── SECTIONS ─────────────────────────────────────────────────────
+function showSection(id) {
+  document.getElementById('section-home').style.display = id === 'home' ? 'block' : 'none';
+  document.getElementById('section-profile').style.display = id === 'profile' ? 'block' : 'none';
+  window.scrollTo(0,0);
+}
+
+// ── AUTH ──────────────────────────────────────────────────────────
+function openLogin() { document.getElementById('loginModal').style.display = 'flex'; }
+function closeLogin() { document.getElementById('loginModal').style.display = 'none'; }
+function openRegister() { document.getElementById('registerModal').style.display = 'flex'; }
+function closeRegister() { document.getElementById('registerModal').style.display = 'none'; }
+function switchToRegister() { closeLogin(); openRegister(); }
+function switchToLogin() { closeRegister(); openLogin(); }
+
+function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPassword').value;
+  const user = MOCK_USERS.find(u => u.email === email && u.password === pass);
+  if (!user) {
+    const el = document.getElementById('loginAlert');
+    el.style.display = 'block';
+    el.textContent = currentLang === 'es' ? 'Credenciales incorrectas. Intenta de nuevo.' : 'Incorrect credentials. Try again.';
+    return;
+  }
+  setLoggedIn(user);
+  closeLogin();
+}
+
+function doRegister() {
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const phone = document.getElementById('regPhone').value.trim();
+  const pass = document.getElementById('regPassword').value;
+  if (!name || !email || !pass) return;
+  const newUser = { id: Date.now().toString(), name, email, phone, password: pass };
+  MOCK_USERS.push(newUser);
+  setLoggedIn(newUser);
+  closeRegister();
+}
+
+function setLoggedIn(user) {
+  currentUser = user;
+  document.getElementById('navGuest').style.display = 'none';
+  document.getElementById('navMember').style.display = 'flex';
+  document.getElementById('navMemberName').textContent = user.name.split(' ')[0];
+  document.getElementById('memberBanner').style.display = 'flex';
+  document.getElementById('guestMemberCta').style.display = 'none';
+  document.getElementById('profileName').textContent = user.name;
+  document.getElementById('profileEmail').textContent = user.email;
+  document.getElementById('profileAvatar').textContent = user.name[0].toUpperCase();
+  document.querySelectorAll('.price-member, .price-member-label').forEach(el => el.style.display = 'inline');
+  renderServices();
+}
+
+function logout() {
+  currentUser = null;
+  document.getElementById('navGuest').style.display = 'flex';
+  document.getElementById('navMember').style.display = 'none';
+  document.getElementById('memberBanner').style.display = 'none';
+  document.getElementById('guestMemberCta').style.display = 'block';
+  document.querySelectorAll('.price-member, .price-member-label').forEach(el => el.style.display = 'none');
+  renderServices();
+  showSection('home');
+}
+
+// ── SERVICES ─────────────────────────────────────────────────────
+function renderServices() {
+  const grid = document.getElementById('servicesGrid');
+  grid.innerHTML = SERVICES.map((s, i) => {
+    const memberPrice = Math.round(s.price * 0.9);
+    const name = currentLang === 'es' ? s.name : s.nameEn;
+    const desc = currentLang === 'es' ? s.desc : s.descEn;
+    const bookTxt = currentLang === 'es' ? 'Reservar este servicio' : 'Book this service';
+    return `
+      <div class="service-card">
+        <div class="service-num">0${i+1}</div>
+        <div class="service-name">${name}</div>
+        <div class="service-desc">${desc}</div>
+        <div class="service-duration">${s.duration}</div>
+        <div class="price-row">
+          <div>
+            <div class="price-original" style="${currentUser ? 'text-decoration:line-through;font-size:28px;color:rgba(201,168,76,.4)' : ''}">${s.price}<span>€</span></div>
+            ${currentUser ? `<div style="font-family:'Cormorant Garamond',serif;font-size:42px;color:#2d7a4f;line-height:1">${memberPrice}<span style="font-size:18px">€</span> <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#2d7a4f">−10%</span></div>` : ''}
+          </div>
+        </div>
+        <button class="service-book-btn" onclick="openBook('${s.id}')">💬 ${bookTxt}</button>
+      </div>`;
+  }).join('');
+}
+
+// ── BOOKING ──────────────────────────────────────────────────────
+function openBook(serviceId) {
+  selectedService = serviceId || null;
+  currentStep = 1;
+  document.getElementById('bookingModal').style.display = 'flex';
+  renderBookStep1();
+  updateStepIndicator(1);
+  if (serviceId) {
+    selectedService = serviceId;
+    document.getElementById('step1Next').disabled = false;
+    document.getElementById('step1Next').style.opacity = '1';
+  }
+}
+function closeBook() { document.getElementById('bookingModal').style.display = 'none'; }
+
+function renderBookStep1() {
+  const grid = document.getElementById('bookServiceGrid');
+  grid.innerHTML = SERVICES.map(s => {
+    const memberPrice = Math.round(s.price * 0.9);
+    const name = currentLang === 'es' ? s.name : s.nameEn;
+    const selected = selectedService === s.id;
+    return `<div onclick="selectService('${s.id}')" style="border:2px solid ${selected ? '#c9a84c' : 'rgba(0,0,0,0.09)'};padding:16px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .2s;background:${selected ? 'rgba(201,168,76,.04)' : '#fff'}">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:2px">${name}</div>
+        <div style="font-size:11px;color:#7a7468">${s.duration}</div>
+      </div>
+      <div style="text-align:right">
+        ${currentUser ? `<div style="font-size:13px;text-decoration:line-through;color:#aaa">${s.price}€</div><div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#2d7a4f">${memberPrice}€</div>` : `<div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#c9a84c">${s.price}€</div>`}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function selectService(id) {
+  selectedService = id;
+  renderBookStep1();
+  document.getElementById('step1Next').disabled = false;
+  document.getElementById('step1Next').style.opacity = '1';
+}
+
+function nextStep(step) {
+  if (step === 3) {
+    const name = document.getElementById('bName').value.trim();
+    const phone = document.getElementById('bPhone').value.trim();
+    const date = document.getElementById('bDate').value;
+    const address = document.getElementById('bAddress').value.trim();
+    if (!name || !phone || !date || !address) {
+      alert(currentLang === 'es' ? 'Por favor completa nombre, WhatsApp, fecha y dirección.' : 'Please fill in name, WhatsApp, date and address.');
+      return;
+    }
+    renderSummary();
+  }
+  currentStep = step;
+  ['bookStep1','bookStep2','bookStep3'].forEach((id,i) => {
+    document.getElementById(id).style.display = i+1 === step ? 'block' : 'none';
+  });
+  updateStepIndicator(step);
+}
+
+function updateStepIndicator(step) {
+  document.querySelectorAll('.step-dot').forEach((dot,i) => {
+    dot.classList.toggle('active', i < step);
+  });
+}
+
+function renderSummary() {
+  const svc = SERVICES.find(s => s.id === selectedService);
+  const name = currentLang === 'es' ? svc.name : svc.nameEn;
+  const memberPrice = Math.round(svc.price * 0.9);
+  const finalPrice = currentUser ? memberPrice : svc.price;
+  const date = document.getElementById('bDate').value;
+  const time = document.getElementById('bTime').value;
+
+  let rows = `
+    <div class="summary-row"><span style="color:#7a7468">${currentLang==='es'?'Servicio':'Service'}</span><span>${name}</span></div>
+    <div class="summary-row"><span style="color:#7a7468">${currentLang==='es'?'Fecha':'Date'}</span><span>${formatDate(date)} ${time ? '· ' + time : ''}</span></div>
+    <div class="summary-row"><span style="color:#7a7468">${currentLang==='es'?'Nombre':'Name'}</span><span>${document.getElementById('bName').value}</span></div>
+    <div class="summary-row"><span style="color:#7a7468">WhatsApp</span><span>${document.getElementById('bPhone').value}</span></div>
+    <div class="summary-row"><span style="color:#7a7468">${currentLang==='es'?'Dirección':'Address'}</span><span>${document.getElementById('bAddress').value}</span></div>`;
+
+  if (currentUser) {
+    rows += `<div class="summary-row discount"><span>✓ ${currentLang==='es'?'Descuento miembro (−10%)':'Member discount (−10%)'}</span><span>−${svc.price - memberPrice}€</span></div>`;
+  }
+  rows += `<div class="summary-row"><span style="font-weight:500">${currentLang==='es'?'Total':'Total'}</span><span style="font-family:'Cormorant Garamond',serif;font-size:22px;color:${currentUser?'#2d7a4f':'#c9a84c'}">${finalPrice}€</span></div>`;
+
+  document.getElementById('bookSummary').innerHTML = rows;
+  document.getElementById('memberDiscountInfo').style.display = currentUser ? 'block' : 'none';
+}
+
+function confirmBooking() {
+  const svc = SERVICES.find(s => s.id === selectedService);
+  const memberPrice = Math.round(svc.price * 0.9);
+  const finalPrice = currentUser ? memberPrice : svc.price;
+  const svcName = currentLang === 'es' ? svc.name : svc.nameEn;
+  const date = document.getElementById('bDate').value;
+  const time = document.getElementById('bTime').value;
+  const name = document.getElementById('bName').value;
+  const phone = document.getElementById('bPhone').value;
+  const address = document.getElementById('bAddress').value;
+  const notes = document.getElementById('bNotes').value;
+  const memberTag = currentUser ? ' ⭐ MIEMBRO (−10%)' : '';
+
+  const msg = currentLang === 'es'
+    ? `Hola, quiero reservar con Stylus Mobile:${memberTag}\n✂️ ${svcName} — ${finalPrice}€\n👤 ${name}\n📞 ${phone}\n📅 ${formatDate(date)}${time ? ' a las ' + time : ''}\n📍 ${address}${notes ? '\n📝 ' + notes : ''}`
+    : `Hello, I'd like to book with Stylus Mobile:${memberTag}\n✂️ ${svcName} — ${finalPrice}€\n👤 ${name}\n📞 ${phone}\n📅 ${formatDate(date)}${time ? ' at ' + time : ''}\n📍 ${address}${notes ? '\n📝 ' + notes : ''}`;
+
+  window.open(`https://wa.me/34655397694?text=${encodeURIComponent(msg)}`, '_blank');
+  closeBook();
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────
+function formatDate(d) {
+  if (!d) return '';
+  return new Date(d + 'T00:00:00').toLocaleDateString('es-ES', {day:'2-digit', month:'short', year:'numeric'});
+}
+
+// ── SCROLL REVEAL ─────────────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEa

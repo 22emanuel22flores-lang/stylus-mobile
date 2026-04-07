@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Stylus Mobile — App Estilistas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Epilogue:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0d0d0b;--cream:#f5f0e8;--gold:#c9a84c;
+  --warm:#faf8f4;--muted:#7a7468;--border:rgba(0,0,0,0.08);--surface:#fff;
+  --success:#2d7a4f;--pending:#a86b32;--danger:#a83232;
+}
+body{font-family:'Epilogue',sans-serif;font-weight:300;background:var(--warm);color:var(--ink);min-height:100vh}
+
+/* ── LOGIN ── */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--ink);background-image:radial-gradient(ellipse at 70% 30%,rgba(201,168,76,.06) 0%,transparent 60%)}
+.login-box{background:#161412;border:1px solid rgba(201,168,76,.15);padding:48px 44px;width:100%;max-width:380px}
+.login-logo{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--cream);text-align:center;margin-bottom:6px}
+.login-logo em{color:var(--gold);font-style:italic}
+.login-role{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:32px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.field input{background:#0d0d0b;border:1px solid rgba(201,168,76,.15);padding:12px 14px;font-family:'Epilogue',sans-serif;font-size:14px;color:var(--cream);outline:none;transition:border-color .2s;border-radius:0}
+.field input:focus{border-color:var(--gold)}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;font-family:'Epilogue',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--ink)}.btn-gold:hover{background:#d4b45a}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--ink)}.btn-outline:hover{border-color:var(--ink)}
+.btn-whatsapp{background:#25D366;color:#fff}.btn-whatsapp:hover{background:#1ebe5d}
+.btn-full{width:100%;justify-content:center}
+.btn-sm{padding:7px 14px;font-size:10px}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--ink);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid rgba(201,168,76,.12)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream)}
+.nav-logo em{color:var(--gold);font-style:italic}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-emp{font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:rgba(201,168,76,.12);color:var(--gold);padding:4px 12px}
+.nav-btn{background:none;border:1px solid rgba(201,168,76,.25);color:var(--gold);padding:6px 12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:'Epilogue',sans-serif;transition:all .2s}
+.nav-btn:hover{background:var(--gold);color:var(--ink)}
+
+/* ── TABS ── */
+.tabs{display:flex;background:var(--ink);border-bottom:1px solid rgba(201,168,76,.1)}
+.tab{flex:1;padding:14px;text-align:center;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.4);cursor:pointer;transition:all .2s;border-bottom:2px solid transparent}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tab:hover{color:rgba(245,240,232,.7)}
+
+/* ── MAIN ── */
+.main{padding-top:60px;min-height:100vh}
+.content{padding:24px 20px;max-width:700px;margin:0 auto}
+
+/* ── TODAY HEADER ── */
+.today-header{background:var(--ink);padding:20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.today-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--cream)}
+.today-meta{font-size:11px;color:var(--gold);letter-spacing:.08em}
+
+/* ── BOOKING CARDS ── */
+.booking-card{background:var(--surface);border:1px solid var(--border);margin-bottom:12px;overflow:hidden;transition:border-color .2s}
+.booking-card:hover{border-color:rgba(201,168,76,.3)}
+.booking-card-header{display:flex;align-items:center;gap:0}
+.bk-time-block{background:var(--ink);color:var(--cream);padding:20px 18px;text-align:center;flex-shrink:0;min-width:80px}
+.bk-time-main{font-family:'Cormorant Garamond',serif;font-size:28px;line-height:1}
+.bk-time-ampm{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-top:2px}
+.bk-card-info{padding:16px 20px;flex:1}
+.bk-client-name{font-size:16px;font-weight:400;margin-bottom:4px}
+.bk-service{font-size:12px;color:var(--muted);margin-bottom:8px}
+.bk-detail{font-size:13px;display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;line-height:1.5}
+.bk-detail-icon{flex-shrink:0;margin-top:1px}
+.booking-card-footer{border-top:1px solid var(--border);padding:12px 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#fdfcfa}
+.badge{display:inline-block;padding:3px 9px;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.badge-confirmed{background:rgba(45,122,79,.1);color:var(--success)}
+.badge-pending{background:rgba(168,107,50,.1);color:var(--pending)}
+.badge-paid{background:rgba(201,168,76,.12);color:#8a6a1a}
+.badge-unpaid{background:rgba(168,50,50,.08);color:var(--danger)}
+.badge-member{background:rgba(201,168,76,.1);color:var(--gold)}
+
+/* ── EMPTY ── */
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty-icon{font-size:48px;margin-bottom:14px}
+.empty-title{font-family:'Cormorant Garamond',serif;font-size:24px;margin-bottom:8px;color:var(--ink)}
+.empty-sub{font-size:13px;line-height:1.6}
+
+/* ── STATS BAR ── */
+.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:20px}
+.stat-item{background:var(--surface);padding:16px;text-align:center}
+.stat-val{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;line-height:1}
+.stat-val.gold{color:var(--gold)}
+.stat-val.green{color:var(--success)}
+.stat-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+/* ── DATE HEADER ── */
+.date-header{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);padding:12px 0 8px;border-bottom:1px solid var(--border);margin-bottom:12px;margin-top:20px}
+.date-header:first-child{margin-top:0}
+
+/* ── ALERT ── */
+.alert{padding:12px 16px;font-size:13px;line-height:1.5;margin-bottom:16px}
+.alert-error{background:rgba(168,50,50,.1);border:1px solid rgba(168,50,50,.2);color:var(--danger)}
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN ══ -->
+<div id="loginScreen">
+  <div class="login-wrap">
+    <div class="login-box">
+      <div class="login-logo">Stylus<em>Mobile</em></div>
+      <div class="login-role">App del equipo</div>
+      <div id="loginError" class="alert alert-error" style="display:none"></div>
+      <div class="field"><label>Email</label><input type="email" id="loginEmail" placeholder="tu@email.com" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+      <div class="field" style="margin-bottom:28px"><label>Contraseña</label><input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+      <button class="btn btn-gold btn-full" onclick="doLogin()">Entrar</button>
+      <div style="margin-top:20px;font-size:11px;color:#444;text-align:center;line-height:1.8">
+        Carlos: carlos@stylus.com / carlos123<br/>
+        María: maria@stylus.com / maria123
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ APP ══ -->
+<div id="appScreen" style="display:none">
+  <nav class="nav">
+    <div class="nav-logo">Stylus<em>Mobile</em></div>
+    <div class="nav-right">
+      <span class="nav-emp" id="navEmpName"></span>
+      <button class="nav-btn" onclick="doLogout()">Salir</button>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="tabs">
+      <div class="tab active" onclick="showTab('today')" id="tab-today">✂️ Hoy</div>
+      <div class="tab" onclick="showTab('upcoming')" id="tab-upcoming">🗓️ Próximas</div>
+      <div class="tab" onclick="showTab('stats')" id="tab-stats">📊 Mis stats</div>
+    </div>
+
+    <div class="content">
+
+      <!-- TODAY -->
+      <div id="page-today">
+        <div class="today-header">
+          <div class="today-title" id="todayGreeting">Tus citas de hoy ✂️</div>
+          <div class="today-meta" id="todayMeta"></div>
+        </div>
+        <div id="todayList"></div>
+      </div>
+
+      <!-- UPCOMING -->
+      <div id="page-upcoming" style="display:none">
+        <div style="margin-bottom:20px">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:28px;margin-bottom:4px">Próximas citas</div>
+          <div style="font-size:13px;color:var(--muted)">Tus reservas de los próximos días</div>
+        </div>
+        <div id="upcomingList"></div>
+      </div>
+
+      <!-- STATS -->
+      <div id="page-stats" style="display:none">
+        <div style="margin-bottom:20px">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:28px;margin-bottom:4px">Mis estadísticas</div>
+          <div style="font-size:13px;color:var(--muted)">Tu rendimiento acumulado</div>
+        </div>
+        <div class="stats-bar" id="statsBar"></div>
+        <div id="statsList"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────
+const TEAM = [
+  { id:'carlos', name:'Carlos', email:'carlos@stylus.com', password:'carlos123' },
+  { id:'maria',  name:'María',  email:'maria@stylus.com',  password:'maria123'  },
+];
+
+const SERVICES_MAP = {
+  corte: { name:'Corte de pelo',       price:30 },
+  barba: { name:'Arreglo de barba',    price:15 },
+  combo: { name:'Combo Corte + Barba', price:40 },
+};
+
+let currentEmp = null;
+
+const today = () => new Date().toISOString().split('T')[0];
+
+function addDays(dateStr, n) {
+  const d = new Date(dateStr + 'T00:00:00');
+  d.setDate(d.getDate() + n);
+  return d.toISOString().split('T')[0];
+}
+
+function loadBookings() {
+  const raw = localStorage.getItem('stylus_bookings');
+  if (raw) return JSON.parse(raw);
+  // Default bookings if no admin data yet
+  return [
+    { id:'b1', clientName:'Juan García',    clientPhone:'+34 612 345 678', address:'Calle Mayor 12, 3°B, Granollers',    service:'combo', employee:'carlos', date:today(),           time:'10:00', status:'confirmed', paid:true,  member:true  },
+    { id:'b2', clientName:'Pedro Martínez', clientPhone:'+34 698 765 432', address:'Av. Correos 5, 1°A, Granollers',    service:'corte', employee:'maria',  date:today(),           time:'12:30', status:'pending',   paid:false, member:false },
+    { id:'b3', clientName:'James Smith',    clientPhone:'+44 7911 123456', address:'Hotel Granollers, hab 205',          service:'barba', employee:'carlos', date:addDays(today(),2),time:'09:00', status:'confirmed', paid:true,  member:false },
+    { id:'b4', clientName:'Ana López',      clientPhone:'+34 633 111 222', address:'Carrer de les Flors 8, Granollers', service:'corte', employee:'maria',  date:addDays(today(),3),time:'11:00', status:'pending',   paid:false, member:true  },
+    { id:'b5', clientName:'Marc Puig',      clientPhone:'+34 677 888 999', address:'Plaça de la Porxada 3, Granollers', service:'combo', employee:'carlos', date:addDays(today(),4),time:'10:30', status:'confirmed', paid:false, member:false },
+  ];
+}
+
+// ── AUTH ──────────────────────────────────────────────────────────────
+function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass  = document.getElementById('loginPass').value;
+  const emp   = TEAM.find(e => e.email === email && e.password === pass);
+  if (!emp) {
+    const el = document.getElementById('loginError');
+    el.style.display = 'block';
+    el.textContent = 'Credenciales incorrectas. Intenta de nuevo.';
+    return;
+  }
+  currentEmp = emp;
+  document.getElementById('loginScreen').style.display  = 'none';
+  document.getElementById('appScreen').style.display    = 'block';
+  document.getElementById('navEmpName').textContent     = emp.name;
+  init();
+}
+
+function doLogout() {
+  currentEmp = null;
+  document.getElementById('appScreen').style.display   = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('loginEmail').value = '';
+  document.getElementById('loginPass').value  = '';
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────
+function init() {
+  const h = new Date().getHours();
+  const greeting = h < 12 ? 'Buenos días' : h < 20 ? 'Buenas tardes' : 'Buenas noches';
+  document.getElementById('todayGreeting').textContent = `${greeting}, ${currentEmp.name} ✂️`;
+
+  const myToday = getMyBookings().filter(b => b.date === today());
+  document.getElementById('todayMeta').textContent =
+    `${myToday.length} cita${myToday.length !== 1 ? 's' : ''} · ${fmtDateShort(today())}`;
+
+  renderToday();
+  renderUpcoming();
+  renderStats();
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────────
+function getMyBookings() {
+  return loadBookings().filter(b => b.employee === currentEmp.id && b.status !== 'cancelled');
+}
+
+function fmtDate(d) {
+  if (!d) return '';
+  return new Date(d + 'T00:00:00').toLocaleDateString('es-ES', { weekday:'long', day:'numeric', month:'long' });
+}
+function fmtDateShort(d) {
+  if (!d) return '';
+  return new Date(d + 'T00:00:00').toLocaleDateString('es-ES', { day:'2-digit', month:'short', year:'numeric' });
+}
+function dayNum(d)    { return new Date(d + 'T00:00:00').getDate(); }
+function monthAbbr(d) { return new Date(d + 'T00:00:00').toLocaleDateString('es-ES', { month:'short' }); }
+
+function waLink(b) {
+  const svc = SERVICES_MAP[b.service];
+  const msg = `Hola ${b.clientName}, te confirmamos tu cita con Stylus Mobile:\n✂️ ${svc.name}\n📅 ${fmtDateShort(b.date)} a las ${b.time}\n📍 ${b.address}\n\n¡Te esperamos! 💈`;
+  return `https://wa.me/${(b.clientPhone||'').replace(/\s+/g,'')}?text=${encodeURIComponent(msg)}`;
+}
+
+function mapsLink(address) {
+  return `https://maps.google.com/?q=${encodeURIComponent(address)}`;
+}
+
+// ── BOOKING CARD ──────────────────────────────────────────────────────
+function bookingCardHTML(b) {
+  const svc = SERVICES_MAP[b.service];
+  const statusLabel = { confirmed:'Confirmada', pending:'Pendiente' }[b.status] || b.status;
+  const [hour, min] = b.time.split(':');
+  const ampm = parseInt(hour) < 12 ? 'AM' : 'PM';
+
+  return `
+    <div class="booking-card">
+      <div class="booking-card-header">
+        <div class="bk-time-block">
+          <div class="bk-time-main">${b.time}</div>
+          <div class="bk-time-ampm">${ampm}</div>
+        </div>
+        <div class="bk-card-info">
+          <div class="bk-client-name">
+            ${b.clientName}
+            ${b.member ? '<span class="badge badge-member">⭐ Miembro</span>' : ''}
+          </div>
+          <div class="bk-service">${svc.name} · <strong>${svc.price}€</strong></div>
+          <div class="bk-detail">
+            <span class="bk-detail-icon">📍</span>
+            <span>${b.address}</span>
+          </div>
+          ${b.clientPhone ? `
+          <div class="bk-detail">
+            <span class="bk-detail-icon">📞</span>
+            <span>${b.clientPhone}</span>
+          </div>` : ''}
+        </div>
+      </div>
+      <div class="booking-card-footer">
+        <span class="badge badge-${b.status}">${statusLabel}</span>
+        <span class="badge badge-${b.paid ? 'paid' : 'unpaid'}">${b.paid ? 'Cobrada' : 'Sin cobrar'}</span>
+        <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap">
+          <a href="${mapsLink(b.address)}" target="_blank" class="btn btn-outline btn-sm">🗺️ Cómo llegar</a>
+          ${b.clientPhone ? `<a href="${waLink(b)}" target="_blank" class="btn btn-whatsapp btn-sm">💬 WhatsApp</a>` : ''}
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── TABS ──────────────────────────────────────────────────────────────
+function showTab(tab) {
+  ['today','upcoming','stats'].forEach(t => {
+    document.getElementById('page-' + t).style.display = t === tab ? 'block' : 'none';
+    document.getElementById('tab-'  + t).classList.toggle('active', t === tab);
+  });
+}
+
+// ── TODAY ─────────────────────────────────────────────────────────────
+function renderToday() {
+  const todayBks = getMyBookings()
+    .filter(b => b.date === today())
+    .sort((a,b) => a.time > b.time ? 1 : -1);
+
+  const el = document.getElementById('todayList');
+
+  if (todayBks.length === 0) {
+    el.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">🎉</div>
+        <div class="empty-title">¡Día libre!</div>
+        <div class="empty-sub">No tienes citas para hoy.<br>Disfruta el descanso.</div>
+      </div>`;
+    return;
+  }
+
+  el.innerHTML = todayBks.map(b => bookingCardHTML(b)).join('');
+}
+
+// ── UPCOMING ──────────────────────────────────────────────────────────
+function renderUpcoming() {
+  const upcoming = getMyBookings()
+    .filter(b => b.date > today())
+    .sort((a,b) => a.date > b.date ? 1 : a.date < b.date ? -1 : a.time > b.time ? 1 : -1);
+
+  const el = document.getElementById('upcomingList');
+
+  if (upcoming.length === 0) {
+    el.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">📭</div>
+        <div class="empty-title">Sin citas próximas</div>
+        <div class="empty-sub">No tienes reservas futuras por ahora.</div>
+      </div>`;
+    return;
+  }
+
+  // Group by date
+  const grouped = {};
+  upcoming.forEach(b => {
+    if (!grouped[b.date]) grouped[b.date] = [];
+    grouped[b.date].push(b);
+  });
+
+  el.innerHTML = Object.keys(grouped).map(date => `
+    <div class="date-header">${fmtDate(date)}</div>
+    ${grouped[date].map(b => bookingCardHTML(b)).join('')}
+  `).join('');
+}
+
+// ── STATS ─────────────────────────────────────────────────────────────
+function renderStats() {
+  const all     = getMyBookings();
+  const todayBks= all.filter(b => b.date === today());
+  const revenue = all.filter(b => b.paid).reduce((s,b) => s + SERVICES_MAP[b.service].price, 0);
+  const pending = all.filter(b => b.status === 'pending').length;
+
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat-item">
+      <div class="stat-val">${todayBks.length}</div>
+      <div class="stat-label">Hoy</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">${all.length}</div>
+      <div class="stat-label">Total citas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val gold">${revenue}€</div>
+      <div class="stat-label">Cobrado</div>
+    </div>`;
+
+  // Service breakdown
+  const byService = {};
+  all.forEach(b => {
+    if (!byService[b.service]) byService[b.service] = 0;
+    byService[b.service]++;
+  });
+
+  document.getElementById('statsList').innerHTML = `
+    <div style="background:var(--surface);border:1px solid var(--border);padding:24px;margin-bottom:16px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:16px">Por servicio</div>
+      ${Object.keys(byService).map(svc => {
+        const s = SERVICES_MAP[svc];
+        const pct = Math.round((byService[svc] / all.length) * 100);
+        return `
+          <div style="margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px">
+              <span>${s.name}</span>
+              <span style="color:var(--muted)">${byService[svc]} citas</span>
+            </div>
+            <div style="background:#eee;height:3px">
+              <div style="background:var(--gold);height:3px;width:${pct}%;transition:width .6s ease"></div>
+            </div>
+          </div>`;
+      }).join('')}
+    </div>
+    ${pending > 0 ? `
+    <div style="background:rgba(168,107,50,.08);border:1px solid rgba(168,107,50,.2);padding:16px 20px;font-size:13px;color:var(--pending)">
+      ⚠️ Tienes <strong>${pending} cita${pending>1?'s':''} pendiente${pending>1?'s':''}</strong> de confirmación por parte del admin.
+    </div>` : ''}`;
+}
+</script>
+</body>
+</html>
